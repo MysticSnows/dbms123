@@ -1,0 +1,7 @@
+first, 'DECLARE done int default 0';
+then declare cursor and 'declare CONTINUE HANDLER for NOT FOUND set done = 1';
+then inside BEGIN, open cursor
+then inside a loop_label that LOOP's, FETCH c_name INTO local_var;
+then check IF done = 1 THEN LEAVE loop_label;
+
+when condition of IF satisfied, it breaks out of loop and executes statements outside of loop

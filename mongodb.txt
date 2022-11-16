@@ -1,0 +1,15 @@
+db.createCollection('student');
+
+db.student.createIndex({name:-1});
+db.student.getIndexes();
+db.student.dropIndex({name:-1});
+
+db.student.insert([{name:'Devesh', rollno:54}, {name:'Dhan', rollno:60}]);
+
+db.student.update({name:'Devesh'},{$set:{name:'Devesh Kamath'}});
+
+db.student.find({$or:[{name:'Devesh', roll:23423}]).pretty();
+
+db.student.aggregate($group:{_id:'$name',total:{$addToSet:'$amount'}}});
+
+db.prb03.mapReduce(function(){ emit(this.cust_id,this.amount);}, function(key, values) {return Array.sum(values)}, {query : {status : "A"}, out:"order_totals"});
